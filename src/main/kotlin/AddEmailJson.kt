@@ -1,0 +1,1 @@
+data class AddEmailJson(val userId: Int, val email: String)

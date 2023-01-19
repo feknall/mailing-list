@@ -1,0 +1,1 @@
+data class ReadUserJson(val userId: Int, val name: String, val emails: List<String>)
