@@ -1,1 +1,0 @@
-data class AddUserJson(val name: String)

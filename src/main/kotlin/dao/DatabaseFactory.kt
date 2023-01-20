@@ -1,3 +1,5 @@
+package dao
+
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -8,8 +10,8 @@ object DatabaseFactory {
         val jdbcURL = "jdbc:h2:file:./build/db"
         val database = Database.connect(jdbcURL, driverClassName)
         transaction(database) {
-            SchemaUtils.create(UserTable)
-            SchemaUtils.create(EmailTable)
+            SchemaUtils.create(Users)
+            SchemaUtils.create(Emails)
         }
     }
 }
