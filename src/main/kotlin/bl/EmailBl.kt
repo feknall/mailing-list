@@ -27,6 +27,7 @@ class EmailBl(private val userRepository: UserRepository, private val emailRepos
 
     fun getAllEmails(userId: Int): List<Email> {
         return transaction {
+            userRepository.get(userId) ?: throw Exception("User not found")
             emailRepository
                 .getAll(userId)
                 .map {

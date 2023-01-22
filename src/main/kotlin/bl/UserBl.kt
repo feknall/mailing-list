@@ -4,6 +4,7 @@ package bl
 import dao.repository.UserRepository
 import org.jetbrains.exposed.sql.transactions.transaction
 import rest.AddUser
+import rest.Email
 import rest.User
 import java.util.*
 
@@ -26,7 +27,7 @@ class UserBl(private val userRepository: UserRepository) {
                         user
                             .emails_
                             .map { email ->
-                                rest.Email(email.id.value, email.emailAddress_)
+                                Email(email.id.value, email.emailAddress_)
                             }
                             .toCollection(LinkedList())
                     )

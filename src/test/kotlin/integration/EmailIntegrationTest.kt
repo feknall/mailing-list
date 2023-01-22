@@ -11,6 +11,7 @@ import org.http4k.hamkrest.hasStatus
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.Test
 import rest.AddEmailResponse
+import rest.Email
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
@@ -178,6 +179,65 @@ class EmailIntegrationTest : IntegrationTestBase() {
         }
 
         assertEquals(0, emailsAfterTwoDelete.size)
+    }
 
+    @Test
+    fun getEmails_userExists_ShouldSuccessfullyReturnTwoEmails() {
+        val name = "user"
+        val user = transaction {
+            userRepository.add(name)
+        }
+        val userId = user.id.value
+
+        val firstEmailAddress = "firstDeleteEmailAddress@gmail.com"
+        val firstEmailId = transaction {
+            emailRepository.add(user, firstEmailAddress)
+        }.id.value
+
+        val secondEmailAddress = "secondDeleteEmailAddress@gmail.com"
+        val secondEmailId = transaction {
+            emailRepository.add(user, secondEmailAddress)
+        }.id.value
+
+        val secondDeleteRequest = Request(Method.GET, "/email").body(
+            "{\"userId\":\"${userId}\"}"
+        )
+        val response = app(secondDeleteRequest)
+        val getEmailResponse = Body.auto<List<Email>>().toLens().extract(response)
+
+        assertThat(response, hasStatus(Status.OK))
+        assertEquals(2, getEmailResponse.size)
+
+        listOf(Email(firstEmailId, firstEmailAddress), Email(secondEmailId, secondEmailAddress)).forEach {
+            assertTrue { getEmailResponse.contains(it) }
+        }
+    }
+
+    @Test
+    fun getEmails_userDoesNotExists_ShouldThrowException() {
+        val request = Request(Method.GET, "/email").body(
+            "{\"userId\":\"${123}\"}"
+        )
+        val response = app(request)
+        assertThat(response, hasStatus(Status.INTERNAL_SERVER_ERROR))
+    }
+
+    @Test
+    fun getEmails_userExistsButHasNoEmail_ShouldReturnEmptyList() {
+        val name = "user"
+        val user = transaction {
+            userRepository.add(name)
+        }
+        val userId = user.id.value
+
+        val secondDeleteRequest = Request(Method.GET, "/email").body(
+            "{\"userId\":\"${userId}\"}"
+        )
+        val response = app(secondDeleteRequest)
+
+        val getEmailResponse = Body.auto<List<Email>>().toLens().extract(response)
+
+        assertThat(response, hasStatus(Status.OK))
+        assertEquals(0, getEmailResponse.size)
     }
 }
