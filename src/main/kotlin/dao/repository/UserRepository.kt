@@ -3,11 +3,12 @@ package dao.repository
 import dao.User
 import org.slf4j.LoggerFactory
 
-object UserRepository {
+class UserRepository {
 
-    private val logger = LoggerFactory.getLogger(UserRepository.javaClass)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     fun add(nameArg: String): Int {
+        logger.debug("X")
         val userId = User.new {
             name_ = nameArg
         }.id.value

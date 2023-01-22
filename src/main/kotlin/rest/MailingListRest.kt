@@ -12,32 +12,35 @@ import org.http4k.format.Jackson.auto
 import org.http4k.routing.bind
 import org.http4k.routing.routes
 
-fun mailingListApi(): HttpHandler {
+class MailingListRest() {
+    fun getRoutes(userBl: UserBl, emailBl: EmailBl): HttpHandler {
 
-    return routes(
-        "/user" bind GET to {
-            Response(OK).with(Body.auto<List<User>>().toLens() of UserBl.getAllUsers())
-        },
-        "/user" bind POST to {
-            val request = Body.auto<AddUser>().toLens().extract(it)
-            val response = UserBl.addUser(request)
-            Response(OK).with(Body.auto<User>().toLens() of response)
-        },
-        "/email" bind GET to {
-            val request = Body.auto<GetEmails>().toLens().extract(it)
-            val response = EmailBl.getAllEmails(request.userId)
-            Response(OK).with(Body.auto<List<Email>>().toLens() of response)
-        },
-        "/email" bind POST to {
-            val request = Body.auto<AddEmailRequest>().toLens().extract(it)
-            val response = EmailBl.addEmail(request)
-            Response(OK).with(Body.auto<AddEmailResponse>().toLens() of response)
+        return routes(
+            "/user" bind GET to {
+                Response(OK).with(Body.auto<List<User>>().toLens() of userBl.getAllUsers())
+            },
+            "/user" bind POST to {
+                val request = Body.auto<AddUser>().toLens().extract(it)
+                val response = userBl.addUser(request)
+                Response(OK).with(Body.auto<User>().toLens() of response)
+            },
+            "/email" bind GET to {
+                val request = Body.auto<GetEmails>().toLens().extract(it)
+                val response = emailBl.getAllEmails(request.userId)
+                Response(OK).with(Body.auto<List<Email>>().toLens() of response)
+            },
+            "/email" bind POST to {
+                val request = Body.auto<AddEmailRequest>().toLens().extract(it)
+                val response = emailBl.addEmail(request)
+                Response(OK).with(Body.auto<AddEmailResponse>().toLens() of response)
 
-        },
-        "/email" bind DELETE to {
-            val request = Body.auto<DeleteEmail>().toLens().extract(it)
-            EmailBl.deleteEmail(request)
-            Response(OK)
-        }
-    )
+            },
+            "/email" bind DELETE to {
+                val request = Body.auto<DeleteEmail>().toLens().extract(it)
+                emailBl.deleteEmail(request)
+                Response(OK)
+            }
+        )
+    }
 }
+

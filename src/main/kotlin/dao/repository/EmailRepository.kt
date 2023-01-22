@@ -7,9 +7,9 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import org.slf4j.LoggerFactory
 
-object EmailRepository {
+class EmailRepository {
 
-    private val logger = LoggerFactory.getLogger(EmailRepository.javaClass)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     fun add(user: User, emailAddress: String): Int {
         val emailId = Email.new {
