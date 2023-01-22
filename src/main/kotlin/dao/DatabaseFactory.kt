@@ -20,8 +20,10 @@ class DatabaseFactory {
         val driverClassName = prop.getProperty("database.driverClassName")
         val username = prop.getProperty("database.username")
         val password = prop.getProperty("database.password")
+
         init(jdbcUrl, driverClassName, username, password)
     }
+
 
     private fun init(jdbcURL: String, driverClassName: String, username: String, password: String) {
         logger.debug(
@@ -34,8 +36,7 @@ class DatabaseFactory {
 
         val database = Database.connect(jdbcURL, driverClassName, username, password)
         transaction(database) {
-            SchemaUtils.create(Users)
-            SchemaUtils.create(Emails)
+            SchemaUtils.create(Users, Emails)
         }
     }
 }

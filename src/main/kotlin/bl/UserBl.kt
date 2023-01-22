@@ -9,10 +9,10 @@ import java.util.*
 
 class UserBl(private val userRepository: UserRepository) {
 
-    fun addUser(user: AddUser): User {
+    fun addUser(user_: AddUser): User {
         return transaction {
-            val userId = userRepository.add(user.name)
-            User(userId, user.name, null)
+            val user = userRepository.add(user_.name)
+            User(user.id.value, user_.name, null)
         }
     }
 

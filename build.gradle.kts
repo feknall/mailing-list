@@ -47,6 +47,11 @@ dependencies {
     // https://mvnrepository.com/artifact/io.mockk/mockk
     testImplementation("io.mockk:mockk:1.13.3")
 
+    // https://mvnrepository.com/artifact/org.http4k/http4k-testing-hamkrest
+    implementation("org.http4k:http4k-testing-hamkrest:4.37.0.0")
+
+
+
 
 
 

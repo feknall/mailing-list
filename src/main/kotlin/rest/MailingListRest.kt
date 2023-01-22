@@ -12,7 +12,7 @@ import org.http4k.format.Jackson.auto
 import org.http4k.routing.bind
 import org.http4k.routing.routes
 
-class MailingListRest() {
+class MailingListRest {
     fun getRoutes(userBl: UserBl, emailBl: EmailBl): HttpHandler {
 
         return routes(

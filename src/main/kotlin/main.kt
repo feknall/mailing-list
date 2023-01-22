@@ -7,6 +7,7 @@ import org.http4k.server.SunHttp
 import org.http4k.server.asServer
 import rest.MailingListRest
 
+
 fun main() {
     val dbFactory = DatabaseFactory()
     dbFactory.init()

@@ -7,13 +7,12 @@ class UserRepository {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
-    fun add(nameArg: String): Int {
-        logger.debug("X")
-        val userId = User.new {
+    fun add(nameArg: String): User {
+        val user = User.new {
             name_ = nameArg
-        }.id.value
-        logger.debug("New user added successfully. userId: {}", userId)
-        return userId
+        }
+        logger.debug("New user added successfully. userId: {}", user.id.value)
+        return user
     }
 
     fun get(userId: Int): User? {
