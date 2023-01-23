@@ -1,3 +1,3 @@
-
 rootProject.name = "mailing-list"
+
 

@@ -1,7 +1,14 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     kotlin("jvm") version "1.7.10"
+}
+
+application {
+    mainClass.set("MailingListMainKt")
 }
 
 group = "com.camcloud"
@@ -47,4 +54,13 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "18"
+}
+
+tasks.jar {
+    manifest.attributes["Main-Class"] = "MailingListMainKt"
+}
+
+
+tasks.withType<ShadowJar> {
+    archiveFileName.set("app.jar")
 }
