@@ -29,9 +29,9 @@ Keep the terminal open after running `./gradlew run`. Server is up and running. 
 
 ## Samples
 Get list of users
-Address:
 ```
 GET localhost:8080/user
+```
 Response Body:
 ```
 [
