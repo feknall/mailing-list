@@ -33,7 +33,10 @@ Address:
 ```
 localhost:8080/user
 ```
-Request Body: EMPTY
+Request Body:
+```
+```
+
 Response Body:
 ```
 [
