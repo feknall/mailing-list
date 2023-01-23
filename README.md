@@ -92,8 +92,46 @@ Response:
 ```
 {
     "userId": 8,
-    "name": "hom23",
+    "name": "Maverik",
     "emailList": null
 }
 ```
+* Get list of emails for an specific user
+```
+GET localhost:8080/email
+{
+    "userId": 1
+}
+```
+Response:
+```
+[
+    {
+        "emailId": 3,
+        "address": "xwx@gmail.com"
+    },
+    {
+        "emailId": 4,
+        "address": "xwx@gmail.com"
+    }
+]
+```
+* Add a new email for a specific user
+```
+POST localhost:8080/email
+{
+    "userId": 1,
+    "emailAddress": "xwx@gmail.com"
+}
+```
+Response:
+```
+{
+    "userId": 1,
+    "emailId": 5,
+    "emailAddress": "xwx@gmail.com"
+}
+```
+* Delete an email of a specific user
+DELETE localhost:8080/email
 
