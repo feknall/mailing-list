@@ -133,5 +133,7 @@ Response:
 }
 ```
 * Delete an email of a specific user
+```
 DELETE localhost:8080/email
+```
 
