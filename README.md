@@ -2,14 +2,14 @@
 # Maling List Project
 
 ## Tech Stack
-Language: Kotlin
-Build Tool: Gradle
-Http Server: Http4k
-Database Connection: JDBC 
-ORM: Exposed
-Databases: PostgreSQL, H2DB for Testing
-Test: Junit and Mockito
-Documentation: Swagger, OpenAPI 3. 
+* Language: Kotlin
+* Build Tool: Gradle
+* Http Server: Http4k
+* Database Connection: JDBC 
+* ORM: Exposed
+* Databases: PostgreSQL, H2DB for Testing
+* Test: Junit and Mockito
+* Documentation: Swagger, OpenAPI 3. 
 
 
 Note: OpenAPI 3 does not support showing request body for GET requests. It is solved in OpenAPI 3.1, but it seems that http4k-contract still uses OpenAPI 3.
