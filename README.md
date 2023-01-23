@@ -31,12 +31,7 @@ Keep the terminal open after running `./gradlew run`. Server is up and running. 
 Get list of users
 Address:
 ```
-localhost:8080/user
-```
-Request Body:
-```
-```
-
+GET localhost:8080/user
 Response Body:
 ```
 [
