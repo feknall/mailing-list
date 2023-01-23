@@ -28,7 +28,7 @@ And:
 Keep the terminal open after running `./gradlew run`. Server is up and running. Open a browser and go to `localhost:8080`. RestAPIs are shown using Swagger.
 
 ## Samples
-Get list of users
+* Get list of users
 ```
 GET localhost:8080/user
 ```
@@ -81,7 +81,21 @@ Response Body:
     }
 ]
 ```
-
-
-
+* Add a new user
+```
+POST localhost:8080/user
+```
+```
+{
+    "name": "Maverik"
+}
+```
+Response:
+```
+{
+    "userId": 8,
+    "name": "hom23",
+    "emailList": null
+}
+```
 
