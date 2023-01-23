@@ -84,8 +84,6 @@ Response Body:
 * Add a new user
 ```
 POST localhost:8080/user
-```
-```
 {
     "name": "Maverik"
 }
