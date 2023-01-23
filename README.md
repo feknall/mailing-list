@@ -1,4 +1,3 @@
-# mailing-list
 # Maling List Project
 
 ## Tech Stack
@@ -16,6 +15,14 @@ Note: OpenAPI 3 does not support showing request body for GET requests. It is so
 
 
 ## How to Run
+The default database is PostgreSQL. However, for running the project you have two choices. Either running an instance of PostgreSQL or changing `application.properties` file. Therefore, either run the below command to run an instance of PostgreSQL on Docker:
+```
+docker run -e POSTGRES_USERNAME=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v /var/run/postgresql:/var/run/postgresql -d --name postgres postgres
+```
+Or comment first few lines of `application.properties` to stop using PostgreSQL, and uncomment last few lines to replace it with H2DB. 
+
+Note: In any case, tests are running on H2DB.
+
 You need to have Open JDK 18. Make sure to use the correct path in `gradle.properties` file for `org.gradle.java.home`. Then, just run:
 ```
 ./gradlew build
