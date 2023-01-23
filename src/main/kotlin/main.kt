@@ -7,7 +7,6 @@ import org.http4k.server.SunHttp
 import org.http4k.server.asServer
 import rest.MailingListRest
 
-
 fun main() {
     val dbFactory = DatabaseFactory()
     dbFactory.init()
@@ -18,6 +17,9 @@ fun main() {
     val emailRepository = EmailRepository()
     val emailBl = EmailBl(userRepository, emailRepository)
 
-    val mailingListApi = MailingListRest()
-    mailingListApi.getRoutes(userBl, emailBl).asServer(SunHttp(8080)).start()
+    val api = MailingListRest()
+    api.routes(userBl, emailBl)
+        .asServer(SunHttp(8080))
+        .start()
+        .block()
 }

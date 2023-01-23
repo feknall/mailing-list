@@ -21,7 +21,7 @@ open class IntegrationTestBase {
     val emailRepository = EmailRepository()
     val emailBl = EmailBl(userRepository, emailRepository)
 
-    val app: HttpHandler = MailingListRest().getRoutes(userBl, emailBl)
+    val app: HttpHandler = MailingListRest().routes(userBl, emailBl)
 
     init {
         val dbFactory = DatabaseFactory()
