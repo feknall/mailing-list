@@ -25,6 +25,65 @@ And:
 ./gradlew run
 ```
 
-Keep the terminal open after running `./gradlew run`. Server is up and running. Open a browser and go to `localhost:8080`.
+Keep the terminal open after running `./gradlew run`. Server is up and running. Open a browser and go to `localhost:8080`. RestAPIs are shown using Swagger.
+
+## Samples
+Get list of users
+Address:
+```
+localhost:8080/user
+```
+Request Body: EMPTY
+Response Body:
+```
+[
+    {
+        "userId": 1,
+        "name": "hom2",
+        "emailList": [
+            {
+                "emailId": 3,
+                "address": "xwx@gmail.com"
+            },
+            {
+                "emailId": 4,
+                "address": "xwx@gmail.com"
+            }
+        ]
+    },
+    {
+        "userId": 2,
+        "name": "Jack",
+        "emailList": []
+    },
+    {
+        "userId": 3,
+        "name": "Jill",
+        "emailList": []
+    },
+    {
+        "userId": 4,
+        "name": "Jack",
+        "emailList": []
+    },
+    {
+        "userId": 5,
+        "name": "Jill",
+        "emailList": []
+    },
+    {
+        "userId": 6,
+        "name": "Tom",
+        "emailList": []
+    },
+    {
+        "userId": 7,
+        "name": "hom23",
+        "emailList": []
+    }
+]
+```
+
+
 
 
